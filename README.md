@@ -1,4 +1,4 @@
-<img width="558" height="288" alt="image" src="https://github.com/user-attachments/assets/f0345d39-b6c9-492b-8f56-699d86a1966f" /># 实验二：图像增强
+# 实验二：图像增强
 
 ## 一、实验目的
 
