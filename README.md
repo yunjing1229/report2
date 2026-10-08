@@ -1,4 +1,4 @@
-# 实验二：图像增强
+<img width="558" height="288" alt="image" src="https://github.com/user-attachments/assets/f0345d39-b6c9-492b-8f56-699d86a1966f" /># 实验二：图像增强
 
 ## 一、实验目的
 
@@ -20,10 +20,12 @@ import cv2
 from skimage.util import random_noise
 import numpy as np
 from matplotlib import pyplot as plt
+```
 
 ### 2.2 读取原始图像并进行色彩空间转换
 读取计算机本地图像文件，获取并输入【100，100】处像素点的 RBG 参数并输出，通过下面的输出结果可以看到，【100，100】像素点的 RGB 为【72, 210, 239】，表现为偏蓝色，通过图像也可以看到这个像素点属于猫猫的衣服处的深蓝色部位。
 
+```
 img = cv2.imread('p1.jpg')
 # 获取图像中【100，100】这个像素的 rgb 三色
 (b, g, r) = img[100, 100]
@@ -34,6 +36,7 @@ plt.imshow(img)
 plt.title('Original Image')
 plt.savefig('output_images/original_bgr.jpg', dpi=300)
 plt.show()
+```
 
 <img width="1180" height="1194" alt="ab99d83850f00c643ab8d5f32d481ad" src="https://github.com/user-attachments/assets/b6a2b84b-67c4-4fb8-9162-c745f3c5bbd2" />
 
@@ -49,6 +52,7 @@ plt.show()
 
 ### 2.3 添加噪声
 这里在原始图像的基础上添加噪声，引入了两个 API 方法，椒盐噪声和高斯噪声，通过对比可以发现，椒盐噪声和高斯噪声的本质不同，椒盐噪声表现为像素会随机替换为白色或者黑色像素（灰度通道），在 RGB 通道表现为像素变成随机彩色点，而高斯噪声会在每个像素上添加随机偏差，服从高斯分布。
+```
 # ====================== 添加噪声 ======================
 # mode='s&p' 代表椒盐噪声，s 代表白色，p 代表黑色，amount=0.4 代表会有 40% 的像素被替换
 sp_noise_img = random_noise(rgb_img, mode='s&p', amount=0.4)
@@ -74,11 +78,13 @@ plt.title('Gus Noise')
 plt.tight_layout()
 plt.savefig('output_images/noise_comparison.jpg', dpi=300)
 plt.show()
+```
 
 <img width="1170" height="395" alt="55806584c4b32d80d2c908185d122b8" src="https://github.com/user-attachments/assets/97208ee3-7140-4707-955a-9a1d9d9de0fc" />
 
 ###2.4 图像滤波
 将图像认为产生噪声后，用 OpenCV 的三个 API 滤波方式进行对比，分别对椒盐滤波和高斯滤波使用【均值滤波】，【中值滤波】，【高斯滤波】，对比每个最适合的滤波方式。
+```
 # 均值滤波
 mean_sp = cv2.blur(sp_noise_img, (5, 5))
 mean_gus = cv2.blur(gaus_noise_img, (5, 5))
@@ -123,10 +129,12 @@ plt.title("Gaussian noise with Gaussian Filter")
 plt.tight_layout()
 plt.savefig('result/filter_results_2x3.jpg', dpi=300)
 plt.show()
+```
 
 <img width="1226" height="705" alt="476d4817c1da1f225295c55dbcd8ea6" src="https://github.com/user-attachments/assets/7363a9ef-5bfe-4024-b262-ce4e86e7abe0" />
 
 ###2.5 手动实现一个滤波方式（中值滤波）
+```
 # ==================== 完整独立可运行版本 ====================
 import cv2
 import numpy as np
@@ -195,6 +203,7 @@ else:
 
     plt.show()
     print("🎉 全部完成！")
+```
 
 <img width="1191" height="616" alt="a0c95781c4120613540c0f43ebae975" src="https://github.com/user-attachments/assets/a8b9f939-f518-48f9-aeff-b665c662d5f9" />
 
